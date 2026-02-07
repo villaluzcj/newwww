@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Amsterdam Quote</title>
+    <style>
+        /* 1. Full Page Background */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Using your tulip background with a dark overlay */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('image_f32e32.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        /* 2. Cinematic Container (Glass Effect) */
+        .post-container {
+            display: flex; 
+            width: 90%;
+            max-width: 1000px;
+            background-color: rgba(0, 0, 0, 0.7); /* Deep dark background */
+            backdrop-filter: blur(15px); /* Blurs the tulips behind the card */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0; /* Starts hidden for animation */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3. The Portrait Section */
+        .image-wrapper {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 650px; 
+            object-fit: cover; 
+            display: block;
+            /* Cinematic old-film filter */
+            filter: sepia(0.2) contrast(1.1) brightness(0.85);
+        }
+
+        /* Moving Film Grain */
+        .image-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("tulips_hero.jpg");
+            opacity: 0.12;
+            pointer-events: none;
+            animation: grain-animation 0.7s steps(5) infinite;
+        }
+
+        /* 4. The Text Section */
+        .text-wrapper {
+            flex: 1.2;
+            display: flex;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .text-wrapper p {
+            color: #ffffff;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin: 0;
+            font-style: italic;
+            letter-spacing: 0.3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Film Grain Movement */
+        @keyframes grain-animation {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-2%, -2%); }
+            40% { transform: translate(2%, 2%); }
+            60% { transform: translate(-1%, 3%); }
+            80% { transform: translate(3%, -1%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .post-container { flex-direction: column; }
+            .image-wrapper img { height: 350px; }
+            .text-wrapper { padding: 30px; }
+            .text-wrapper p { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="post-container">
+    <div class="image-wrapper">
+        <img src="alluring.jpg" alt="Cinematic Portrait">
+    </div>
+    <div class="text-wrapper">
+        <p>
+            "To my alluring, I know you're tired, and I know life hasn't been easy lately, 
+            but I also know how strong you are. You carry so much more than anyone 
+            realizes, and even on the days you feel like breaking, you still choose 
+            to show up. Just know this: I see you, I believe in you, and I'm always 
+            here for you no matter what. You're never alone, not while I'm still breathing."
+        </p>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const layout = document.querySelector('.post-container');
+        
+        // Cinematic entry animation
+        layout.style.opacity = '0';
+        layout.style.transform = 'translateY(30px) scale(0.95)';
+        layout.style.transition = 'opacity 2.5s ease-out, transform 2s cubic-bezier(0.1, 0.7, 0.1, 1)';
+
+        setTimeout(() => {
+            layout.style.opacity = '1';
+            layout.style.transform = 'translateY(0) scale(1)';
+        }, 400);
+    });
+</script>
+
+</body>
+</html>
